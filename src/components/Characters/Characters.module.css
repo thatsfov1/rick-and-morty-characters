@@ -1,0 +1,12 @@
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    text-transform: uppercase;
+}
+
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
