@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Header.module.css";
 import logo from '../../assets/logo.png'
-import Dropdowns from "./Dropdowns.jsx";
 import {createTheme, TextField, ThemeProvider} from "@mui/material";
 import {Form} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
@@ -18,16 +17,22 @@ const Header = (props) => {
 
         }
     })
-
     return <div className={s.header}>
         <div className={s.logo}>
             <NavLink to={'/'}>
                 <img className={s.image} src={logo} alt="logo"/>
             </NavLink>
             <div className={s.dropdowns}>
-                <Dropdowns title="Characters"/>
-                <Dropdowns title="Location"/>
-                <Dropdowns title="Episodes"/></div>
+                <NavLink to={'/'}>
+                    <button>Characters</button>
+                </NavLink>
+                <NavLink to={'/locations'}>
+                    <button>Locations</button>
+                </NavLink>
+                <NavLink to={'/episodes'}>
+                    <button>Episodes</button>
+                </NavLink>
+            </div>
         </div>
         <Form.Control
             type="search"

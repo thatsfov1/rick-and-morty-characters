@@ -21,3 +21,27 @@
     margin-left: 50px;
     display: flex;
 }
+
+.dropdowns button{
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 24px;
+    padding: 0 10px ;
+    margin: 0 20px;
+    position: relative;
+}
+
+.dropdowns button::after{
+    content: '';
+    width: 0%;
+    height: 3px;
+    background: #000;
+    position: absolute;
+    bottom: 0% ;
+    left: 50%;
+    transition: all .5s ease;
+}
+.dropdowns button:hover::after{
+    left: 0%;
+    width: 100%;
+}

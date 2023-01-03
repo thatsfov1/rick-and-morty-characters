@@ -1,0 +1,30 @@
+.image img{
+    height: 200px;
+}
+
+.container{
+    width: 530px;
+    background-color: white;
+    display: flex;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: transform .4s;
+}
+
+.container:hover{
+    transform: scale(1.01);
+}
+
+.description{
+    padding: 10px 15px;
+}
+
+.cardTitle{
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.status span{
+    display: flex;
+    align-items: center;
+}

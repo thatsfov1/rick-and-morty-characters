@@ -5,18 +5,18 @@ export const instance = axios.create({
 })
 
 export const characterAPI = {
-    allCharacters(){
-        return  instance.get('/character')
+    allCharacters(currentPage = 1){
+        return  instance.get(`/character?page=${currentPage}`)
     }
 }
 export const locationAPI = {
-    allLocations(){
-        return  instance.get('/location')
+    allLocations(currentPage = 1){
+        return  instance.get(`/location?page=${currentPage}`)
     }
 }
 
 export const episodeAPI = {
-    allEpisodes(){
-        return  instance.get('/episode')
+    allEpisodes(currentPage = 1){
+        return  instance.get(`/episode?page=${currentPage}`)
     }
 }
