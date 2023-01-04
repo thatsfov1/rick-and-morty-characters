@@ -1,5 +1,5 @@
 .image img{
-    height: 200px;
+    height: 275px;
 }
 
 .container{
@@ -16,15 +16,36 @@
 }
 
 .description{
-    padding: 10px 15px;
+    padding: 10px;
+    padding-top: 0px;
+
 }
 
 .cardTitle{
-    font-size: 28px;
+    font-size: 27px;
     font-weight: 500;
 }
 
 .status span{
     display: flex;
     align-items: center;
+}
+
+.type{
+    font-size: 14px;
+    color: rgba(0, 0 , 0, 0.4);
+}
+
+.info{
+    font-size: 18px;
+    color: rgba(0, 0 , 0, 0.5);
+}
+
+.infoContent{
+    font-size: 20px;
+}
+
+.infoContent:hover{
+    color:#6EC325;
+    transition-duration: 0.2s;
 }

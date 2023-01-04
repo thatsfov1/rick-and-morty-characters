@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Card from "../../Card/Card.jsx";
 import s from "../Characters/Characters.module.css";
 
@@ -8,8 +8,11 @@ const MapContentToCard = ({content}) => {
       {content && content.map(c => <Card key={c.id} id={c.id} image={c.image}
                                                            status={c.status} name={c.name}
                                                            gender={c.gender} species={c.species}
+                                                           type={c.type} dimension={c.dimension}
+                                         location={c.location.name} episode={c.episode[0]}
       />)}
-    </div>
+
+      </div>
   )
 }
 export default  MapContentToCard

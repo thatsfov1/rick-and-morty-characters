@@ -3,10 +3,18 @@
     justify-content: center;
     font-size: 48px;
     text-transform: uppercase;
+    padding-bottom: 10px;
 }
+
+.image{
+    display: block;
+    margin: auto;
+}
+
 
 .content{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
