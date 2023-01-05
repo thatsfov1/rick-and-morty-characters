@@ -10,6 +10,7 @@ const MapContentToCard = ({content}) => {
                                                            gender={c.gender} species={c.species}
                                                            type={c.type} dimension={c.dimension}
                                          location={c.location.name} episode={c.episode[0]}
+                                         locationUrl={c.location.url}
       />)}
 
       </div>

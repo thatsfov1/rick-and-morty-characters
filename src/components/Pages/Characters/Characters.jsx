@@ -38,15 +38,14 @@ const Characters = ({characters, requestCharacters, pagesCount, status, gender, 
     }
 
     return <div className={s.characters}>
-        <img className={s.image} src={title} width="500px"/>
+        <img className={s.image} src={title} width="60%"/>
         <span className={s.title}>Characters</span>
         <Filters/>
         <MapContentToCard
             content={transformCharacters()}
         />
-        {transformCharacters().length > 1
-            ? <BasicPagination setCurrentPage={setCurrentPage} pagesCount={pagesCount}/>
-            : <div style={{color: "rgba(0,0,0,0.5)", fontSize: '60px', textAlign: 'center'}}>No results</div>}
+        <BasicPagination setCurrentPage={setCurrentPage} pagesCount={pagesCount}/>
+
     </div>;
 }
 
