@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Card from "../../Card/Card.jsx";
+import React from 'react'
+import Card from "../Card/Card.jsx";
 import s from "../Characters/Characters.module.css";
 
 const MapContentToCard = ({content}) => {

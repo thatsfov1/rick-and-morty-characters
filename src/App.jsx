@@ -1,7 +1,7 @@
 import './App.css'
 import {Container} from "@mui/material";
 import Header from "./components/Header/Header.jsx";
-import Characters from "./components/Pages/Characters/Characters.jsx";
+import Characters from "./components/Characters/Characters.jsx";
 
 
 

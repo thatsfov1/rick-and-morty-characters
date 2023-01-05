@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Checkbox, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup} from "@mui/material";
 import {connect} from "react-redux";
-import {clearFilters, setGender, setStatus} from "../../../store/reducers/characters-reducer.js";
+import {clearFilters, setGender, setStatus} from "../../store/reducers/characters-reducer.js";
 
 const Filters = ({status,gender,setGender,clearFilters,setStatus}) => {
   return (

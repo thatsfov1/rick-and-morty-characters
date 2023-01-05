@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import s from './Characters.module.css'
 import {connect} from "react-redux";
-import {requestCharacters} from "../../../store/reducers/characters-reducer.js";
-import MapContentToCard from "../PagesItems/MapContentToCard.jsx";
-import BasicPagination from "../PagesItems/Pagination.jsx";
-import Filters from "../PagesItems/Filters.jsx";
-import title from '../../../assets/title.png'
+import {requestCharacters} from "../../store/reducers/characters-reducer.js";
+import MapContentToCard from "../CharacterItems/MapContentToCard.jsx";
+import BasicPagination from "../CharacterItems/Pagination.jsx";
+import Filters from "../CharacterItems/Filters.jsx";
+import title from '../../assets/title.png'
 
-const Characters = ({characters, requestCharacters, pagesCount, status, gender, searchBy, searchQuery}) => {
+const Characters = ({characters, requestCharacters, pagesCount,
+                        status, gender, searchBy, searchQuery}) => {
 
     const [currentPage, setCurrentPage] = useState(1)
 
