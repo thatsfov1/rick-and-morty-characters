@@ -1,12 +1,28 @@
 import React from 'react'
-import {Button, Checkbox, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup} from "@mui/material";
-import {connect} from "react-redux";
-import {clearFilters, setGender, setStatus} from "../../store/reducers/characters-reducer.js";
+import {Button, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup} from "@mui/material";
 
-const Filters = ({status,gender,setGender,clearFilters,setStatus}) => {
+type Props = {
+    gender?:string,
+    status?:string,
+    setGender: React.Dispatch<React.SetStateAction<string | undefined>>,
+    setStatus: React.Dispatch<React.SetStateAction<string | undefined>>
+    setSearch: React.Dispatch<React.SetStateAction<string>>
+    setSearchBy: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Filters = ({status,gender,setGender,setStatus, setSearchBy, setSearch} :Props) => {
+
+    const clearFilters = () => {
+        setSearchBy(false)
+        setSearch('')
+        setStatus('')
+        setGender('')
+    }
+
   return (
     <div style={{ display:'flex', paddingBottom:10}}>
-        <div><FormGroup>
+        <div>
+            <FormGroup>
             <FormLabel id="gender-label">Gender</FormLabel>
             <RadioGroup
                 row
@@ -33,7 +49,8 @@ const Filters = ({status,gender,setGender,clearFilters,setStatus}) => {
                 <FormControlLabel onChange={() => setStatus("Unknown")} checked={status === "Unknown"} value="unknown"
                                   control={<Radio style={{color: "#6EC325"}}/>} label="Unknown"/>
             </RadioGroup>
-        </FormGroup></div>
+        </FormGroup>
+        </div>
         <div style={{marginTop:20}}>
             <Button size="medium" onClick={() => clearFilters()}
                    style={{backgroundColor: "#6EC325", borderRadius: 7, color: "white"}}>Clear Filters</Button>
@@ -42,11 +59,5 @@ const Filters = ({status,gender,setGender,clearFilters,setStatus}) => {
   )
 }
 
-const mapStateToProps = (state) =>{
-    return{
-        status:state.charactersReducer.status,
-        gender:state.charactersReducer.gender,
-    }
-}
 
-export default connect(mapStateToProps,{clearFilters,setGender,setStatus})(Filters)
+export default Filters

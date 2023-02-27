@@ -1,49 +1,48 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import s from './Card.module.css'
 import {ImCross, ImCheckmark} from "react-icons/im";
 import {AiTwotoneQuestionCircle} from "react-icons/ai";
-import axios from "axios";
 import {BiFemaleSign, BiMaleSign, BiQuestionMark} from "react-icons/bi";
-import {OverlayTrigger, Popover, Tooltip} from "react-bootstrap";
+import {OverlayTrigger, Popover} from "react-bootstrap";
+import useNumber from "../../hooks/useNumber";
+import {useLazyGetEpisodesQuery, useLazyGetLocationsQuery} from "../../store/characters.api";
 
-const Card = ({
-                  name, image, id, gender, status, species, type, dimension,
-                  location, episode,locationUrl
-              }) => {
+type Props = {
+    name: string;
+    status: string;
+    species: string;
+    type: string;
+    gender: string;
+    location: string;
+    locationUrl:string;
+    image: string;
+    episode: string;
+}
 
-    const [firstEpisodeDate, setFirstEpisodeDate] = useState()
-    const [episodeCount, setEpisodeCount] = useState()
-    const [firstEpisode, setFirstEpisode] = useState()
-    const [episodeSeason, setEpisodeSeason] = useState()
-    const [locationType, setLocationType] = useState()
-    const [locationDimension, setLocationDimension] = useState()
+const Card = ({name, image, gender, status, species, type,
+                  location, episode,locationUrl}:Props) => {
 
 
-    const requestFirstEpisode = async () => {
-        const {data} = await axios.get(episode)
-        setFirstEpisode(data.name)
-        setFirstEpisodeDate(data.air_date)
-        setEpisodeSeason(data.episode.slice(2, 3))
-        setEpisodeCount(data.episode.slice(4, 6))
+    const locationNumber = useNumber(locationUrl)
+    const episodeNumber = useNumber(episode)
+
+    const [fetchEpisode, {data:episodeData}] = useLazyGetEpisodesQuery()
+    const [fetchLocation, {data:locationData}] = useLazyGetLocationsQuery()
+
+
+
+    const getEpisode = () => {
+        fetchEpisode(episodeNumber)
     }
-
-    const requestLocation = async () =>{
-        const {data} = await axios.get(locationUrl)
-        setLocationType(data.type)
-        setLocationDimension(data.dimension)
-
+    const getLocation = () => {
+        fetchLocation(locationNumber)
     }
-
-    useEffect(() => {
-        requestFirstEpisode()
-        requestLocation()
-    }, [])
 
 
     return (
         <div className={s.container}>
             <div className={s.image}>
-                <img src={image}/>
+                <img alt='character' src={image}/>
             </div>
             <div className={s.description}>
                 <div className={s.cardTitle}>
@@ -65,18 +64,23 @@ const Card = ({
 
                         <div>
                             <div className={s.info}>Last known location:</div>
-                            <OverlayTrigger placement="bottom"
+                            <OverlayTrigger  placement="bottom"
                                             delay={{show: 250, hide: 200}}
                                             overlay={<Popover id="popover-location">
                                                 <Popover.Header as="h3">{location}</Popover.Header>
                                                 <Popover.Body>
-                                                    {locationDimension !== "unknown" && <div>{locationDimension}</div>}
-                                                    {locationType && <div>
-                                                        <span className={s.infoPopover}>Type: </span>{locationType}
+                                                    {locationData?.dimension !== "unknown" && <div>
+                                                        {locationData?.dimension}
+                                                    </div>}
+                                                    {locationData?.type && <div>
+                                                        <span className={s.infoPopover}>Type: </span>
+                                                        {locationData?.type}
                                                     </div>}
                                                 </Popover.Body>
                                             </Popover>}>
-                                <div className={s.infoContent}>{location}</div>
+                                <div onMouseEnter={getLocation} className={s.infoContent}>
+                                    {location}
+                                </div>
                             </OverlayTrigger>
                         </div>
 
@@ -86,13 +90,16 @@ const Card = ({
                                             delay={{show: 250, hide: 200}}
                                             overlay={<Popover id="popover-basic">
                                                 <Popover.Header
-                                                    as="h3">{firstEpisode}(Season: {episodeSeason} Episode: {episodeCount})</Popover.Header>
+                                                    as="h3">{episodeData?.name}(Season: {episodeData?.episode.slice(2, 3)} Episode: {episodeData?.episode.slice(4, 6)})
+                                                </Popover.Header>
                                                 <Popover.Body>
-                                                    <span className={s.infoPopover}>Date of coming:</span> {firstEpisodeDate}
+                                                    <span className={s.infoPopover}>Date of coming:</span>
+                                                    {episodeData?.air_date}
                                                 </Popover.Body>
-                                            </Popover>}
-                            >
-                                <div className={s.infoContent}>{firstEpisode}</div>
+                                            </Popover>}>
+                                <div onMouseEnter={getEpisode} className={s.infoContent}>
+                                    Episode
+                                </div>
                             </OverlayTrigger>
                         </div>
                     </div>
