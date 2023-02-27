@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {ServerResponse} from "../models/models";
+import {DetailsResponse, ServerResponse} from "../models/models";
 
 export const charactersApi = createApi({
     reducerPath:'characters/api',
@@ -15,12 +15,12 @@ export const charactersApi = createApi({
                 }
             })
         }),
-        getEpisodes: builder.query<any, number>({
+        getEpisodes: builder.query<DetailsResponse, number>({
             query:(episodeNumber) => ({
                 url: `episode/${episodeNumber}`,
             })
         }),
-        getLocations: builder.query<any, number>({
+        getLocations: builder.query<DetailsResponse, number>({
             query:(locationNumber) => ({
                 url: `location/${locationNumber}`,
 
